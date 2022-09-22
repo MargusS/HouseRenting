@@ -4,28 +4,28 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule)
   },
   {
     path: 'new-rent',
-    loadChildren: () => import('./new-rent/new-rent.module').then( m => m.NewRentPageModule)
+    loadChildren: () => import('./new-rent/new-rent.module').then(m => m.NewRentPageModule)
   },
   {
     path: 'upt-rent',
-    loadChildren: () => import('./upt-rent/upt-rent.module').then( m => m.UptRentPageModule)
+    loadChildren: () => import('./upt-rent/upt-rent.module').then(m => m.UptRentPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
 ];
 

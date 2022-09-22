@@ -1,0 +1,21 @@
+.menu-btn-open {
+    position: absolute;
+    top: 90%;
+    right: 5%;
+}
+
+.center {
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+
+    h4 {
+        margin: 0;
+    }
+}
+
+.btn-group {
+    width: 100%;
+    margin: .5em 0;
+    column-gap: 1em;
+}
