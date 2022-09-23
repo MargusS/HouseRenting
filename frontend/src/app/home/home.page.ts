@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HouseService } from '../service/house.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor() {}
+  houses: any = [];
+  constructor(private houseService: HouseService) { }
 
+  ngOnInit() {
+    this.getAllHouses();
+  }
+
+  getAllHouses() {
+    this.houseService.getHouses().subscribe(response => {
+      this.houses = response;
+    })
+  }
 }

@@ -17,4 +17,4 @@ import { NewRentPage } from './new-rent.page';
   ],
   declarations: [NewRentPage]
 })
-export class NewRentPageModule {}
+export class NewRentPageModule { }
