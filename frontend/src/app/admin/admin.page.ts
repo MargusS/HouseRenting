@@ -16,5 +16,10 @@ export class AdminPage implements OnInit {
   goToNew() {
     this.router.navigateByUrl("/new-rent");
   }
+  goToUpdate() {
+    this.router.navigateByUrl("/upt-rent");
+  }
+  deleteItem() {
+  }
 
 }

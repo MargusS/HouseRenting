@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>upt-rent</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<app-header title="Update"></app-header>
+<ion-content class="ion-padding">
+  <ion-card class="ion-padding card-form">
+    <ion-card-header>
+      <ion-card-title>Update info</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      <ion-item class="ion-margin-vertical">
+        <ion-label position="stacked">Title</ion-label>
+        <ion-input type="text" placeholder="New House"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-vertical">
+        <ion-label position="stacked">Location</ion-label>
+        <ion-input type="text" placeholder="House address"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-vertical">
+        <ion-label position="stacked">Price €</ion-label>
+        <ion-input type="number" placeholder="100"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-vertical">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input type="text" placeholder="House description"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-vertical">
+        <ion-label position="stacked">WC</ion-label>
+        <ion-input type="number" placeholder="0 - 10"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-vertical">
+        <ion-label position="stacked">Rooms</ion-label>
+        <ion-input type="number" placeholder="0 - 10"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" class="ion-margin-top">
+      <ion-icon name="checkmark-done-outline" slot="start"></ion-icon>
+      <ion-label>Update rent</ion-label>
+    </ion-button>
+  </ion-card>
 </ion-content>
