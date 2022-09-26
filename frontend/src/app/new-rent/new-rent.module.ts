@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NewRentPageRoutingModule } from './new-rent-routing.module';
 
 import { NewRentPage } from './new-rent.page';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NewRentPageRoutingModule
+    NewRentPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [NewRentPage]
 })

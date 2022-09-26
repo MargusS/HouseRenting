@@ -1,28 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Admin</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Admin"></app-header>
 
 <ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">HOUSE RENTING</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-menu-toggle>
-    <ion-button class="menu-btn-open" menu="main-menu">
-      <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
-    </ion-button>
-  </ion-menu-toggle>
-
-  <div class="center">
-    <ion-button class="btn-add" size="default" (click)="goToNew()">
-      <ion-icon name="add-outline" slot="icon-only"></ion-icon>
-      <h4>New Renting</h4>
-    </ion-button>
-  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab-button color="dark">
+      <ion-icon name="arrow-back-outline" ></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-button color="dark">
+        <ion-icon name="settings-outline" slot="start"></ion-icon>
+        <ion-label class="label">Account</ion-label>
+      </ion-button>
+      <ion-button color="dark">
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        <ion-label>New Rent</ion-label>
+      </ion-button>
+    </ion-fab-list>
+  </ion-fab>
 
   <ion-row>
     <ion-col sizeMd="6" sizeXs="12">

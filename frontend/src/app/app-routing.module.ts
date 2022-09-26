@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./upt-rent/upt-rent.module').then(m => m.UptRentPageModule)
   },
   {
+    path: 'detail',
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'

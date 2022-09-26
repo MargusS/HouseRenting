@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { UptRentPageRoutingModule } from './upt-rent-routing.module';
 
 import { UptRentPage } from './upt-rent.page';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UptRentPageRoutingModule
+    UptRentPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [UptRentPage]
 })
