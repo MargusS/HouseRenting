@@ -19,11 +19,11 @@ const routes: Routes = [
     loadChildren: () => import('./new-rent/new-rent.module').then(m => m.NewRentPageModule)
   },
   {
-    path: 'upt-rent',
+    path: 'upt-rent/:id',
     loadChildren: () => import('./upt-rent/upt-rent.module').then(m => m.UptRentPageModule)
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
   },
   {

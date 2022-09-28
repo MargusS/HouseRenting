@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HouseService } from '../service/house.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,19 +8,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.page.scss'],
 })
 export class AdminPage implements OnInit {
-
-  constructor(private router: Router) { }
+  houses: any = [];
+  constructor(private router: Router,private houseService: HouseService) { }
 
   ngOnInit() {
+    this.getAllHouses();
   }
 
-  goToNew() {
+  getAllHouses() :void {
+    this.houseService.getHouses().subscribe(response => {
+      this.houses = response;
+    })
+  }
+
+  goToNew() : void{
     this.router.navigateByUrl("/new-rent");
   }
-  goToUpdate() {
-    this.router.navigateByUrl("/upt-rent");
-  }
-  deleteItem() {
+
+  deleteItem(id:number) :void {
+    alert('borrar el ' + id);
+    this.houseService.deleteHouse(id).subscribe(
+      data => {
+        console.log("producto eliminado");
+        this.getAllHouses();
+      },
+      err=>{
+        console.log("error al eliminar");
+      }
+    )
   }
 
 }

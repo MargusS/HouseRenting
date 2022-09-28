@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { House } from '../models/house';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,23 +12,23 @@ export class HouseService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getHouses() {
-    return this.httpClient.get(this.path + '/lista');
+  getHouses(): Observable<House[]> {
+    return this.httpClient.get<House[]>(this.path + '/lista');
   }
-  getDetail(id:number) {
-    return this.httpClient.get(this.path + `/detail/${id}`);
-  }
-
-  postCreate(house: House){
-    return this.httpClient.post(this.path + `/create`, house);
+  getDetail(id:number): Observable<House> {
+    return this.httpClient.get<House>(this.path + `/detail/${id}`);
   }
 
-  putUpdate(id:number,house:House){
-    return this.httpClient.put(this.path + `/update/${id}`,house);
+  postCreate(house: House): Observable<any>{
+    return this.httpClient.post<any>(this.path + `/create`, house);
   }
 
-  deleteHouse(id:number){
-    return this.httpClient.delete(this.path + `/delete/${id}`);
+  putUpdate(id:number,house:House): Observable<any>{
+    return this.httpClient.put<any>(this.path + `/update/${id}`,house);
+  }
+
+  deleteHouse(id:number):Observable<any>{
+    return this.httpClient.delete<any>(this.path + `/delete/${id}`);
   }
 
 }
