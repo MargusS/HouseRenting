@@ -15,6 +15,10 @@ export class HomePage implements OnInit {
     this.getAllHouses();
   }
 
+  ionViewWillEnter() {
+    this.getAllHouses();
+  }
+
   getAllHouses() {
     this.houseService.getHouses().subscribe(response => {
       this.houses = response;

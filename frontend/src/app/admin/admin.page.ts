@@ -9,30 +9,34 @@ import { HouseService } from '../service/house.service';
 })
 export class AdminPage implements OnInit {
   houses: any = [];
-  constructor(private router: Router,private houseService: HouseService) { }
+  constructor(private router: Router, private houseService: HouseService) { }
 
   ngOnInit() {
     this.getAllHouses();
   }
 
-  getAllHouses() :void {
+  ionViewWillEnter() {
+    this.getAllHouses();
+  }
+
+  getAllHouses(): void {
     this.houseService.getHouses().subscribe(response => {
       this.houses = response;
     })
   }
 
-  goToNew() : void{
+  goToNew(): void {
     this.router.navigateByUrl("/new-rent");
   }
 
-  deleteItem(id:number) :void {
+  deleteItem(id: number): void {
     alert('borrar el ' + id);
     this.houseService.deleteHouse(id).subscribe(
       data => {
         console.log("producto eliminado");
         this.getAllHouses();
       },
-      err=>{
+      err => {
         console.log("error al eliminar");
       }
     )
