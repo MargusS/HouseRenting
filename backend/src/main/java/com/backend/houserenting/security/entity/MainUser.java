@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 //Controla la autoridad de los usuarios
 public class MainUser implements UserDetails {
-	private String nombre;
+	private String name;
 	private String userName;
 	private String email;
 	private String ph_number;
@@ -20,9 +20,9 @@ public class MainUser implements UserDetails {
 	public MainUser() {
 	}
 
-	public MainUser(String nombre, String userName, String email, String ph_number, String password,
+	public MainUser(String name, String userName, String email, String ph_number, String password,
 			Collection<? extends GrantedAuthority> authorities) {
-		this.nombre = nombre;
+		this.name = name;
 		this.userName = userName;
 		this.email = email;
 		this.ph_number = ph_number;
@@ -70,11 +70,11 @@ public class MainUser implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String nombre) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
