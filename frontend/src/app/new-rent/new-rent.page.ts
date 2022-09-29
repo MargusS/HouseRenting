@@ -31,7 +31,6 @@ export class NewRentPage implements OnInit {
       },
       err => {
         alert('Producto no valido');
-        this.router.navigate(['/admin']);
       }
     )
   }
