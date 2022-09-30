@@ -2,14 +2,7 @@ package com.backend.houserenting.security.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -30,9 +23,9 @@ public class User {
 	private String password;
 	//Relación N a M, muchos usuarios,muchos roles
 	@NotNull
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
-	private Set<Rol> Roles = new HashSet<>();
+	private Set<Rol> roles = new HashSet<>();
 
 	public User() {
 	}
@@ -95,11 +88,11 @@ public class User {
 	}
 
 	public Set<Rol> getRoles() {
-		return Roles;
+		return roles;
 	}
 
 	public void setRoles(Set<Rol> roles) {
-		Roles = roles;
+		roles = roles;
 	}
 	
 }

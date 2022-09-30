@@ -3,6 +3,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.backend.houserenting.security.enumjwt.RolName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.HashSet;
+import java.util.Set;
+@Entity
 public class Rol {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +38,4 @@ public class Rol {
 	public void setRolName(RolName rolName) {
 		this.rolName = rolName;
 	}
-	
-	
-	
 }
