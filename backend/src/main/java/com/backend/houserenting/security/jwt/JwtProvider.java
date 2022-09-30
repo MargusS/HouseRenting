@@ -2,7 +2,7 @@ package com.backend.houserenting.security.jwt;
 
 import com.backend.houserenting.security.entity.MainUser;
 import io.jsonwebtoken.*;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -18,13 +18,15 @@ public class JwtProvider {
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(JwtProvider.class);
     @Value("${jwt.secret}")
-    private Key secret;
+    String secret;
+
+    //private Key secretKey = new Key(secret);
     @Value("${jwt.expiration}")
     private int expiration;
 
     public String generateToken(Authentication authentication){
         MainUser mainUser = (MainUser) authentication.getPrincipal();
-        return Jwts.builder().setSubject(mainUser.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expiration*1000)).signWith(secret,SignatureAlgorithm.ES512).compact();
+        return Jwts.builder().setSubject(mainUser.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expiration*1000)).signWith(SignatureAlgorithm.ES512,secret).compact();
     }
 
     public String getUserNameFromToke(String token){

@@ -1,7 +1,7 @@
 package com.backend.houserenting.security.jwt;
 
 import com.backend.houserenting.security.service.UserDetailServiceImpl;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
