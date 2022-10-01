@@ -1,20 +1,19 @@
 package com.backend.houserenting.security.dto;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-public class LoginUser {
+public class LoginUsuario {
     @NotBlank
-    private String userName;
+    private String nombreUsuario;
     @NotBlank
     private String password;
 
-    public String getUserName() {
-        return userName;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {

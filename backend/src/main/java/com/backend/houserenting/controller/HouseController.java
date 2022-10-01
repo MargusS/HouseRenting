@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,7 +43,8 @@ public class HouseController {
 	        House house = houseService.getByTitle(title).get();
 	        return new ResponseEntity(house, HttpStatus.OK);
 	    }
-
+	    
+	    @PreAuthorize("hasRole('ADMIN')")
 	    @PostMapping("/create")
 	    public ResponseEntity<?> create(@RequestBody HouseDto houseDto){
 	        if(StringUtils.isBlank(houseDto.getTitle()))
@@ -56,7 +58,8 @@ public class HouseController {
 	        houseService.save(house);
 	        return new ResponseEntity(new Message("house creado"), HttpStatus.OK);
 	    }
-
+	    
+	    @PreAuthorize("hasRole('ADMIN')")
 	    @PutMapping("/update/{id}")
 	    public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody HouseDto houseDto){
 	        if(!houseService.existsById(id))
@@ -70,11 +73,16 @@ public class HouseController {
 
 	        House house = houseService.getOne(id).get();
 	        house.setTitle(houseDto.getTitle());
+	        house.setDescription(houseDto.getDescription());
+	        house.setLocation(houseDto.getLocation());
+	        house.setWc(houseDto.getWc());
+	        house.setRooms(houseDto.getRooms());
 	        house.setPrice(houseDto.getPrice());
 	        houseService.save(house);
 	        return new ResponseEntity(new Message("house actualizado"), HttpStatus.OK);
 	    }
-
+	    
+	    @PreAuthorize("hasRole('ADMIN')")
 	    @DeleteMapping("/delete/{id}")
 	    public ResponseEntity<?> delete(@PathVariable("id")int id){
 	        if(!houseService.existsById(id))

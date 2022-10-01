@@ -1,39 +1,36 @@
 package com.backend.houserenting.security.dto;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NewUser {
+public class NuevoUsuario {
     @NotBlank
-    private String name;
+    private String nombre;
     @NotBlank
-    private String userName;
-    @Email
+    private String nombreUsuario;
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     private String email;
     @NotBlank
-    private String ph_number;
-    @NotBlank
     private String password;
+    private String telefono;
     private Set<String> roles = new HashSet<>();
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getEmail() {
@@ -42,14 +39,6 @@ public class NewUser {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPh_number() {
-        return ph_number;
-    }
-
-    public void setPh_number(String ph_number) {
-        this.ph_number = ph_number;
     }
 
     public String getPassword() {
@@ -67,4 +56,14 @@ public class NewUser {
     public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+    
+    
 }

@@ -1,41 +1,39 @@
 package com.backend.houserenting.security.entity;
+
+import com.backend.houserenting.security.enums.RolNombre;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.backend.houserenting.security.enumjwt.RolName;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.HashSet;
-import java.util.Set;
 @Entity
 public class Rol {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private RolName rolName;
-	
-	public Rol() {
-	}
-	
-	public Rol(@NotNull RolName rolName) {
-		this.rolName = rolName;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private RolNombre rolNombre;
 
-	public int getId() {
-		return Id;
-	}
+    public Rol() {
+    }
 
-	public void setId(int id) {
-		Id = id;
-	}
+    public Rol(@NotNull RolNombre rolNombre) {
+        this.rolNombre = rolNombre;
+    }
 
-	public RolName getRolName() {
-		return rolName;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setRolName(RolName rolName) {
-		this.rolName = rolName;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public RolNombre getRolNombre() {
+        return rolNombre;
+    }
+
+    public void setRolNombre(RolNombre rolNombre) {
+        this.rolNombre = rolNombre;
+    }
 }
