@@ -1,9 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Login"></app-header>
 
-<ion-content>
-
+<ion-content *ngIf="!isLogged">
+  <ion-card class="ion-padding">
+    <ion-card-title class="ion-text-center">Complete the Form</ion-card-title>
+    <ion-list>
+      <form #log="ngForm" (ngSubmit)="onLogin()" novalidate>
+        <ion-item>
+          <ion-label position="floating">Username: </ion-label>
+          <ion-input type="text" name="userName" [(ngModel)]="userName" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password: </ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="password" required></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="full" class="ion-margin-vertical" [disabled]="!log.valid">
+          <ion-icon name="log-in" slot="start"></ion-icon>
+          <ion-label>Login</ion-label>
+        </ion-button>
+      </form>
+      <ion-label>Don't have an account?</ion-label>
+      <ion-button expand="full" class="ion-margin-vertical" routerLink="/register">
+        <ion-icon name="person-add" slot="start"></ion-icon>
+        <ion-label>Create account</ion-label>
+      </ion-button>
+    </ion-list>
+  </ion-card>
 </ion-content>

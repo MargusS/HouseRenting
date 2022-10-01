@@ -8,20 +8,22 @@ import { HouseService } from '../service/house.service';
 })
 export class HomePage implements OnInit {
 
+  isLogged = false;
+  userName = "Agustin";
   houses: any = [];
   constructor(private houseService: HouseService) { }
 
   ngOnInit() {
-    this.getAllHouses();
+    // this.getAllHouses();
   }
 
   ionViewWillEnter() {
-    this.getAllHouses();
+    // this.getAllHouses();
   }
 
-  getAllHouses() {
-    this.houseService.getHouses().subscribe(response => {
-      this.houses = response;
-    })
-  }
+  // getAllHouses() {
+  //   this.houseService.getHouses().subscribe(response => {
+  //     this.houses = response;
+  //   })
+  // }
 }

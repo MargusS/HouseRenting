@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/login']);
   }
 
   goToHome() {

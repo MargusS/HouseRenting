@@ -8,7 +8,15 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'houses-list',
+    loadChildren: () => import('./houses-list/houses-list.module').then( m => m.HousesListPageModule)
   },
   {
     path: 'admin',
@@ -31,6 +39,9 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  
+
+
 ];
 
 @NgModule({
