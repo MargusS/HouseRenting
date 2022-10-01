@@ -1,7 +1,7 @@
 package com.backend.houserenting.security.service;
 
-import com.backend.houserenting.security.entity.Usuario;
-import com.backend.houserenting.security.repository.UsuarioRepository;
+import com.backend.houserenting.security.entity.User;
+import com.backend.houserenting.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,24 +10,24 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class UsuarioService {
+public class UserService {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UserRepository userRepository;
 
-    public Optional<Usuario> getByNombreUsuario(String nombreUsuario){
-        return usuarioRepository.findByNombreUsuario(nombreUsuario);
+    public Optional<User> getByUserName(String userName){
+        return userRepository.findByUserName(userName);
     }
 
-    public boolean existsByNombreUsuario(String nombreUsuario){
-        return usuarioRepository.existsByNombreUsuario(nombreUsuario);
+    public boolean existsByUserName(String userName){
+        return userRepository.existsByUserName(userName);
     }
 
     public boolean existsByEmail(String email){
-        return usuarioRepository.existsByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 
-    public void save(Usuario usuario){
-        usuarioRepository.save(usuario);
+    public void save(User user){
+        userRepository.save(user);
     }
 }

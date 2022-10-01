@@ -1,7 +1,7 @@
 package com.backend.houserenting.security.service;
 
-import com.backend.houserenting.security.entity.Usuario;
-import com.backend.houserenting.security.entity.UsuarioPrincipal;
+import com.backend.houserenting.security.entity.User;
+import com.backend.houserenting.security.entity.MainUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    UsuarioService usuarioService;
+    UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
-        Usuario usuario = usuarioService.getByNombreUsuario(nombreUsuario).get();
-        return UsuarioPrincipal.build(usuario);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userService.getByUserName(userName).get();
+        return MainUser.build(user);
     }
 }

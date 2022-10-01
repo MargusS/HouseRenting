@@ -1,7 +1,7 @@
 package com.backend.houserenting.security.service;
 
 import com.backend.houserenting.security.entity.Rol;
-import com.backend.houserenting.security.enums.RolNombre;
+import com.backend.houserenting.security.enums.RolName;
 import com.backend.houserenting.security.repository.RolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,8 @@ public class RolService {
     @Autowired
     RolRepository rolRepository;
 
-    public Optional<Rol> getByRolNombre(RolNombre rolNombre){
-        return rolRepository.findByRolNombre(rolNombre);
+    public Optional<Rol> getByRolNombre(RolName rolNombre){
+        return rolRepository.findByRolName(rolNombre);
     }
 
     public void save(Rol rol){

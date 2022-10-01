@@ -5,32 +5,32 @@ import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NuevoUsuario {
+public class NewUser {
     @NotBlank
-    private String nombre;
+    private String name;
     @NotBlank
-    private String nombreUsuario;
+    private String userName;
     @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     private String email;
     @NotBlank
     private String password;
-    private String telefono;
+    private String phNumber;
     private Set<String> roles = new HashSet<>();
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -57,12 +57,12 @@ public class NuevoUsuario {
         this.roles = roles;
     }
 
-	public String getTelefono() {
-		return telefono;
+	public String getPhNumber() {
+		return phNumber;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setPhNumber(String phNumber) {
+		this.phNumber = phNumber;
 	}
     
     

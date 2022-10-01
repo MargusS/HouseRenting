@@ -1,6 +1,6 @@
 package com.backend.houserenting.security.jwt;
 
-import com.backend.houserenting.security.entity.UsuarioPrincipal;
+import com.backend.houserenting.security.entity.MainUser;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class JwtProvider {
     private int expiration;
 
     public String generateToken(Authentication authentication){
-        UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
+        MainUser usuarioPrincipal = (MainUser) authentication.getPrincipal();
         return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000))
