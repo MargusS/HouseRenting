@@ -7,11 +7,11 @@ public class Message {
 	        this.message = message;
 	    }
 
-	    public String getMensaje() {
+	    public String getMessage() {
 	        return message;
 	    }
 
-	    public void setMensaje(String message) {
+	    public void setMessage(String message) {
 	        this.message = message;
 	    }
 }

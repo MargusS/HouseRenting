@@ -21,8 +21,8 @@ public class JwtProvider {
     private int expiration;
 
     public String generateToken(Authentication authentication){
-        MainUser usuarioPrincipal = (MainUser) authentication.getPrincipal();
-        return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
+        MainUser mainUser = (MainUser) authentication.getPrincipal();
+        return Jwts.builder().setSubject(mainUser.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret)

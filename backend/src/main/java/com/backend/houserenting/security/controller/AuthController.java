@@ -49,13 +49,12 @@ public class AuthController {
     @PostMapping("/newUser")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NewUser newUser, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return new ResponseEntity(new Message("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("Invalid Inputs Data"), HttpStatus.BAD_REQUEST);
         if(userService.existsByUserName(newUser.getUserName()))
-            return new ResponseEntity(new Message("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("Username Alredy Exists"), HttpStatus.BAD_REQUEST);
         if(userService.existsByEmail(newUser.getEmail()))
-            return new ResponseEntity(new Message("ese email ya existe"), HttpStatus.BAD_REQUEST);
-        User user =
-                new User(newUser.getName(), newUser.getUserName(), newUser.getEmail(),
+            return new ResponseEntity(new Message("Email Alredy Exists"), HttpStatus.BAD_REQUEST);
+        User user = new User(newUser.getName(), newUser.getUserName(), newUser.getEmail(),
                         passwordEncoder.encode(newUser.getPassword()),newUser.getPhNumber());
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolName.ROLE_USER).get());
@@ -68,10 +67,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody UserLogin userLogin, BindingResult bindingResult){
-        if(bindingResult.hasErrors())
+        if(bindingResult.hasErrors()) {
             return new ResponseEntity(new Message("campos mal puestos"), HttpStatus.BAD_REQUEST);
-        Authentication authentication =
-                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin.getUserName(), userLogin.getPassword()));
+        }
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin.getUserName(), userLogin.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();

@@ -72,4 +72,9 @@ public class MainUser implements UserDetails {
     public String getEmail() {
         return email;
     }
+
+	public String getPhNumber() {
+		return phNumber;
+	}
+    
 }
