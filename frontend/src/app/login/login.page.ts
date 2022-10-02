@@ -18,8 +18,6 @@ export class LoginPage implements OnInit {
   userName = '';
   password = '';
 
-  errMss:string;
-
   constructor(private tokenService: TokenService, private authService: AuthService, private router:Router, private toastController: ToastController) { }
 
   ngOnInit() {
@@ -37,12 +35,12 @@ export class LoginPage implements OnInit {
       data =>{
         this.isLogged = true;
         this.tokenService.setToken(data.token);
-        this.router.navigate(['/']);
+        this.router.navigate(['/houses-list']);
       },
       err =>{
-        this.isLogged = false;
-        this.errMss = err.error.message;
-        this.presentToast(this.errMss);
+        if(err.status === 401){
+          this.presentToast("Incorrect username or password");
+        }
       }
     )
   }

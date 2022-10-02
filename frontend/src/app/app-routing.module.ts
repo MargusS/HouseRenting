@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {HouseGuardService} from './guard/house-guard.service';
 
 const routes: Routes = [
   {
@@ -16,23 +17,28 @@ const routes: Routes = [
   },
   {
     path: 'houses-list',
-    loadChildren: () => import('./houses-list/houses-list.module').then( m => m.HousesListPageModule)
+    loadChildren: () => import('./houses-list/houses-list.module').then( m => m.HousesListPageModule),
+    canActivate: [HouseGuardService], data: {requiredRoles: ['user','admin']}
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule),
+    canActivate: [HouseGuardService], data: {requiredRoles: ['admin']}
   },
   {
     path: 'new-rent',
-    loadChildren: () => import('./new-rent/new-rent.module').then(m => m.NewRentPageModule)
+    loadChildren: () => import('./new-rent/new-rent.module').then(m => m.NewRentPageModule),
+    canActivate: [HouseGuardService], data: {requiredRoles: ['admin']}
   },
   {
     path: 'upt-rent/:id',
-    loadChildren: () => import('./upt-rent/upt-rent.module').then(m => m.UptRentPageModule)
+    loadChildren: () => import('./upt-rent/upt-rent.module').then(m => m.UptRentPageModule),
+    canActivate: [HouseGuardService], data: {requiredRoles: ['admin']}
   },
   {
     path: 'detail/:id',
-    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule),
+    canActivate: [HouseGuardService], data: {requiredRoles: ['user' , 'admin']}
   },
   {
     path: '**',

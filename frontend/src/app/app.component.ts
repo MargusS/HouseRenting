@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+
+import { Component, ViewChild } from '@angular/core';
+
+import { MenuController, Platform } from '@ionic/angular';
+import { MenuComponent } from './components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,19 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() { }
+
+  @ViewChild(MenuComponent) menu: MenuComponent;
+
+  menuOpen = false;
+
+  constructor( private menuController: MenuController) {}
+  
+  toggleMenu(): void {
+    this.menu.testLogged();
+    this.menuController.toggle('first');
+  }
+
+  changeMenu(): void {
+    this.menuOpen = !this.menuOpen;
+  }
 }

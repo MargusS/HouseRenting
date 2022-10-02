@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,8 +9,13 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router: Router) { }
-  ngOnInit(): void {
+  isLogged: boolean;
+  isAdmin: boolean;
+
+  constructor(private router: Router,private tokenService: TokenService) { }
+  
+  ngOnInit(){
+    this.testLogged();
   }
 
   goToLogin() {
@@ -17,7 +23,22 @@ export class MenuComponent implements OnInit {
   }
 
   goToHome() {
-    this.router.navigateByUrl("/home");
+    this.router.navigateByUrl("/houses-list");
+  }
+  goToAdmin() {
+    this.router.navigateByUrl("/admin");
+  }
+
+  logOut() {
+    this.tokenService.logOut();
+    this.isLogged = false;
+    this.isAdmin = false;
+    this.router.navigate(['/login']);
+  }
+
+  testLogged(): void {
+    this.isLogged = this.tokenService.getToken()!= null;
+    this.isAdmin = this.tokenService.isAdmin();
   }
 
 }

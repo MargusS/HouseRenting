@@ -1,4 +1,10 @@
-<app-header title="Login"></app-header>
+<app-header *ngIf="isLogged" title="Login"></app-header>
+
+<ion-header *ngIf="!isLogged" class="ion-no-border">
+  <ion-toolbar color="cyan">
+    <ion-title text-capitalize>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content *ngIf="!isLogged">
   <ion-card class="ion-padding">
@@ -24,5 +30,14 @@
         <ion-label>Create account</ion-label>
       </ion-button>
     </ion-list>
+  </ion-card>
+</ion-content>
+
+<ion-content *ngIf="isLogged">
+  <ion-card class="ion-padding">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Logged In</ion-card-title>
+      <ion-button expand="full" class="ion-margin-top" (click)="logOut()">LOG OUT</ion-button>
+    </ion-card-header>
   </ion-card>
 </ion-content>

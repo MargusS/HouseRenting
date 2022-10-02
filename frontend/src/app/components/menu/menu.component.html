@@ -1,4 +1,4 @@
-<ion-menu menuId="main-menu" content-id="main" side="end">
+<ion-menu menuId="first" content-id="main" side="end" swipeGesture="false">
   <ion-header [translucent]="true" class="ion-no-border">
     <ion-toolbar color="cyan">
       <ion-title>Menu Content</ion-title>
@@ -13,16 +13,22 @@
   </ion-header>
   <ion-content class="ion-padding">
     <ion-list>
-      <ion-menu-toggle>
+      <ion-menu-toggle *ngIf="isLogged">
         <ion-item (click)="goToHome()">
           <ion-icon name="home-outline" slot="end"></ion-icon>
           <ion-label>Home</ion-label>
         </ion-item>
       </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item (click)="goToLogin()">
-          <ion-icon name="person-outline" slot="end"></ion-icon>
-          <ion-label>Sign In / Log In</ion-label>
+      <ion-menu-toggle *ngIf="isLogged && isAdmin">
+        <ion-item (click)="goToAdmin()">
+          <ion-icon name="settings-outline" slot="end"></ion-icon>
+          <ion-label>Admin</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle *ngIf="isLogged">
+        <ion-item (click)="logOut()">
+          <ion-icon name="log-out-outline" slot="end"></ion-icon>
+          <ion-label> Cerrar Sesión</ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-list>

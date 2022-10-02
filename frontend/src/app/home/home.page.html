@@ -1,26 +1,15 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="cyan">
     <ion-title text-capitalize>Home</ion-title>
-    <ion-buttons slot="end">
-      <ion-menu-toggle>
-        <ion-button class="menu-btn-open" menu="main-menu">
-          <ion-icon name="menu-outline" slot="icon-only" color="dark"></ion-icon>
-        </ion-button>
-      </ion-menu-toggle>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card>
-    <ion-card-header *ngIf="!isLogged">
-      <ion-card-title>No has iniciado sesión</ion-card-title>
-      <!-- <ion-card-subtitle></ion-card-subtitle> -->
-    </ion-card-header>
-  </ion-card>
-  <ion-card>
-    <ion-card-header *ngIf="isLogged">
-      <ion-card-title>Bienvenido {{userName}}</ion-card-title>
-      <ion-card-subtitle>¿Buscas una nueva casa o quieres alquilar la tuya?</ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
+  <ion-button class="ion-margin-vertical" routerLink="/login">
+    <ion-icon name="person-add" slot="start"></ion-icon>
+    <ion-label>Login</ion-label>
+  </ion-button>
+  <ion-button class="ion-margin-vertical" routerLink="/register">
+    <ion-icon name="person-add" slot="start"></ion-icon>
+    <ion-label>Create account</ion-label>
+  </ion-button>
 </ion-content>

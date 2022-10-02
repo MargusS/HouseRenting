@@ -4,37 +4,38 @@
   <ion-card class="ion-padding">
     <ion-card-title class="ion-text-center">Complete the Form</ion-card-title>
     <ion-list>
-      <form #f="" ngForm (ngSubmit)="onRegister()" novalidate>
+      <form #reg="ngForm" ngForm (ngSubmit)="onRegister()" novalidate>
         <ion-item>
           <ion-label position="floating">Name: <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input type="text" placeholder="Your Name" required name="name"></ion-input>
+          <ion-input type="text" placeholder="Your Name" required name="name" [(ngModel)]="name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Username: <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input type="text" placeholder="Username" required name="username"></ion-input>
+          <ion-input type="text" placeholder="Username" required name="userName" [(ngModel)]="userName"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Email: <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input type="email" placeholder="email@email.com" required name="email"></ion-input>
+          <ion-input type="email" placeholder="email@email.com" required name="email" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password: <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input type="password" placeholder="******" required name="password"></ion-input>
+          <ion-input type="password" placeholder="******" required name="password" [(ngModel)]="password"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Phone Number: <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input type="number" placeholder="000000000" required name="ph_number"></ion-input>
+          <ion-input type="number" placeholder="000000000" required name="phNumber" [(ngModel)]="phNumber"></ion-input>
         </ion-item>
+        <ion-button type="submit" expand="full" class="ion-margin-vertical" routerLink="/register"
+          [disabled]="!reg.valid">
+          <ion-icon name="person-add" slot="start"></ion-icon>
+          <ion-label>Create account</ion-label>
+        </ion-button>
       </form>
-      <ion-button type="submit" expand="full" class="ion-margin-vertical" routerLink="/register">
-        <ion-icon name="person-add" slot="start"></ion-icon>
-        <ion-label>Create account</ion-label>
-      </ion-button>
     </ion-list>
   </ion-card>
 </ion-content>

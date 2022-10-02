@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HouseService } from '../service/house.service';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +10,16 @@ import { HouseService } from '../service/house.service';
 export class HomePage implements OnInit {
 
   isLogged = false;
-  userName = "Agustin";
+  userName = "juan";
   houses: any = [];
-  constructor(private houseService: HouseService) { }
+  constructor(private houseService: HouseService, private tokenService: TokenService) { }
 
   ngOnInit() {
-    // this.getAllHouses();
+    this.testLogged()
   }
 
   ionViewWillEnter() {
-    // this.getAllHouses();
+    this.testLogged();
   }
 
   // getAllHouses() {
@@ -26,4 +27,9 @@ export class HomePage implements OnInit {
   //     this.houses = response;
   //   })
   // }
+
+  testLogged(): void {
+    this.isLogged = this.tokenService.getToken() != null;
+    this.userName = this.tokenService.getUserName();
+  }
 }

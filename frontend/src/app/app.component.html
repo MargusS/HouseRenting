@@ -1,4 +1,4 @@
 <ion-app>
-  <app-menu></app-menu>
+  <app-menu (ionWillClose)="changeMenu()" (ionWillOpen)="changeMenu()"></app-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

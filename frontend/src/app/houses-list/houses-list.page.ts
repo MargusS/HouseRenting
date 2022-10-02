@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HouseService } from '../service/house.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { HouseService } from '../service/house.service';
 export class HousesListPage implements OnInit {
 
   houses: any = [];
-  constructor(private houseService: HouseService) { }
+  constructor(private houseService: HouseService, private router: Router) { }
 
   ngOnInit() {
     this.getAllHouses();
@@ -22,6 +23,9 @@ export class HousesListPage implements OnInit {
   getAllHouses() {
     this.houseService.getHouses().subscribe(response => {
       this.houses = response;
+    },
+    err =>{
+      this.router.navigate(['/']);
     })
   }
 
