@@ -64,6 +64,4 @@ public class NewUser {
 	public void setPhNumber(String phNumber) {
 		this.phNumber = phNumber;
 	}
-    
-    
 }

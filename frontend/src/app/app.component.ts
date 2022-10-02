@@ -1,7 +1,8 @@
 
 import { Component, ViewChild } from '@angular/core';
 
-import { MenuController, Platform } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
+import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 
 @Component({
@@ -12,17 +13,12 @@ import { MenuComponent } from './components/menu/menu.component';
 export class AppComponent {
 
   @ViewChild(MenuComponent) menu: MenuComponent;
-
-  menuOpen = false;
+  // @ViewChild(HeaderComponent) header: HeaderComponent;
 
   constructor( private menuController: MenuController) {}
   
-  toggleMenu(): void {
+  uptMenu(): void {
     this.menu.testLogged();
-    this.menuController.toggle('first');
   }
 
-  changeMenu(): void {
-    this.menuOpen = !this.menuOpen;
-  }
 }
