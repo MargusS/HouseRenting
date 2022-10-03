@@ -1,6 +1,5 @@
 # House Renting FullStack with JWT
  
-## Prerequisites
 
 ## General Installation instructions
 
