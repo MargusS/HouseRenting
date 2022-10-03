@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { HouseService } from '../service/house.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { HouseService } from '../service/house.service';
 })
 export class AdminPage implements OnInit {
   houses: any = [];
-  constructor(private router: Router, private houseService: HouseService) { }
+  toastColor:string;
+
+  constructor(private router: Router, private houseService: HouseService,private toastController: ToastController) { }
 
   ngOnInit() {
     this.getAllHouses();
@@ -30,16 +33,30 @@ export class AdminPage implements OnInit {
   }
 
   deleteItem(id: number): void {
-    alert('borrar el ' + id);
     this.houseService.deleteHouse(id).subscribe(
       data => {
-        console.log("producto eliminado");
+        this.toastColor = 'success'
+        this.presentToast(data.message);
         this.getAllHouses();
       },
       err => {
-        console.log("error al eliminar");
+        this.toastColor = 'danger'
+        this.presentToast(err.error.message);
       }
     )
   }
+
+  async presentToast(msj: string) {
+    const toast = await this.toastController.create({
+      message: msj,
+      duration: 2000,
+      position: 'bottom',
+      color: this.toastColor,
+      icon:"alert-circle-outline",
+      animated: true
+    });
+    toast.present();
+  }
+
 
 }

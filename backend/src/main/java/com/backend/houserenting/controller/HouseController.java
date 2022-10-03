@@ -31,7 +31,7 @@ public class HouseController {
 	    @GetMapping("/detail/{id}")
 	    public ResponseEntity<House> getById(@PathVariable("id") int id){
 	        if(!houseService.existsById(id))
-	            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
+	            return new ResponseEntity(new Message("Not Exist"), HttpStatus.NOT_FOUND);
 	        House house = houseService.getOne(id).get();
 	        return new ResponseEntity(house, HttpStatus.OK);
 	    }
@@ -39,7 +39,7 @@ public class HouseController {
 	    @GetMapping("/detailname/{title}")
 	    public ResponseEntity<House> getByTitle(@PathVariable("title") String title){
 	        if(!houseService.existsByTitle(title))
-	            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
+	            return new ResponseEntity(new Message("Not Exist"), HttpStatus.NOT_FOUND);
 	        House house = houseService.getByTitle(title).get();
 	        return new ResponseEntity(house, HttpStatus.OK);
 	    }
@@ -48,28 +48,28 @@ public class HouseController {
 	    @PostMapping("/create")
 	    public ResponseEntity<?> create(@RequestBody HouseDto houseDto){
 	        if(StringUtils.isBlank(houseDto.getTitle()))
-	            return new ResponseEntity(new Message("el title es obligatorio"), HttpStatus.BAD_REQUEST);
+	            return new ResponseEntity(new Message("Title is mandatory"), HttpStatus.BAD_REQUEST);
 	        if(houseDto.getPrice() == 0L || houseDto.getPrice() < 0  ) {
-	            return new ResponseEntity(new Message("el precio debe ser mayor que 0"), HttpStatus.BAD_REQUEST);
+	            return new ResponseEntity(new Message("Price should be more than 0"), HttpStatus.BAD_REQUEST);
 	        }
 	        if(houseService.existsByTitle(houseDto.getTitle()))
-	            return new ResponseEntity(new Message("ese title ya existe"), HttpStatus.BAD_REQUEST);
+	            return new ResponseEntity(new Message("Title Already Exist"), HttpStatus.BAD_REQUEST);
 	        House house = new House(houseDto.getTitle(),houseDto.getDescription(),houseDto.getWc(),houseDto.getRooms(), houseDto.getPrice(),houseDto.getLocation());
 	        houseService.save(house);
-	        return new ResponseEntity(new Message("house creado"), HttpStatus.OK);
+	        return new ResponseEntity(new Message("House Created"), HttpStatus.OK);
 	    }
 	    
 	    @PreAuthorize("hasRole('ADMIN')")
 	    @PutMapping("/update/{id}")
 	    public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody HouseDto houseDto){
 	        if(!houseService.existsById(id))
-	            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
+	            return new ResponseEntity(new Message("Not Exist"), HttpStatus.NOT_FOUND);
 	        if(houseService.existsByTitle(houseDto.getTitle()) && houseService.getByTitle(houseDto.getTitle()).get().getId() != id)
-	            return new ResponseEntity(new Message("ese title ya existe"), HttpStatus.BAD_REQUEST);
+	            return new ResponseEntity(new Message("Title Already Exist"), HttpStatus.BAD_REQUEST);
 	        if(StringUtils.isBlank(houseDto.getTitle()))
-	            return new ResponseEntity(new Message("el title es obligatorio"), HttpStatus.BAD_REQUEST);
+	            return new ResponseEntity(new Message("Title is mandatory"), HttpStatus.BAD_REQUEST);
 	        if(houseDto.getPrice()==0L || houseDto.getPrice()<0 )
-	            return new ResponseEntity(new Message("el precio debe ser mayor que 0"), HttpStatus.BAD_REQUEST);
+	            return new ResponseEntity(new Message("Price should be more than 0"), HttpStatus.BAD_REQUEST);
 
 	        House house = houseService.getOne(id).get();
 	        house.setTitle(houseDto.getTitle());
@@ -86,8 +86,8 @@ public class HouseController {
 	    @DeleteMapping("/delete/{id}")
 	    public ResponseEntity<?> delete(@PathVariable("id")int id){
 	        if(!houseService.existsById(id))
-	            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
+	            return new ResponseEntity(new Message("Not Exist"), HttpStatus.NOT_FOUND);
 	        houseService.delete(id);
-	        return new ResponseEntity(new Message("house eliminado"), HttpStatus.OK);
+	        return new ResponseEntity(new Message("House Deleted"), HttpStatus.OK);
 	    }
 }

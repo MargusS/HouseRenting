@@ -70,7 +70,10 @@ export class RegisterPage implements OnInit {
     const toast = await this.toastController.create({
       message: msj,
       duration: 2000,
-      position: 'middle'
+      position: 'bottom',
+      color: "danger",
+      icon:"alert-circle-outline",
+      animated: true
     });
     toast.present();
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { House } from '../models/house';
 import { HouseService } from '../service/house.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-new-rent',
@@ -17,7 +18,9 @@ export class NewRentPage implements OnInit {
   wc: number = null;
   rooms: number = null; 
 
-  constructor(private houseService: HouseService, private router: Router) { }
+  toastColor:string;
+
+  constructor(private houseService: HouseService, private router: Router,private toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -26,13 +29,27 @@ export class NewRentPage implements OnInit {
     const house = new House(this.title,this.location,this.price,this.description,this.wc,this.rooms);
     this.houseService.postCreate(house).subscribe(
       data => {
-        alert('Producto creado');
+        this.toastColor = 'success'
+        this.presentToast(data.message);
         this.router.navigate(['/admin']);
       },
       err => {
-        alert('Producto no valido');
+        this.toastColor = 'danger'
+        this.presentToast(err.error.message);
       }
     )
+  }
+
+  async presentToast(msj: string) {
+    const toast = await this.toastController.create({
+      message: msj,
+      duration: 2000,
+      position: 'bottom',
+      color: this.toastColor,
+      icon:"alert-circle-outline",
+      animated: true
+    });
+    toast.present();
   }
 
 }
